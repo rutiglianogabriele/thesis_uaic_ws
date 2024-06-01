@@ -1,0 +1,7 @@
+<launch>
+    <!-- This launch file will launch all the nodes needed to run the test task -->
+    
+    <!-- Launch the test task -->
+    <node pkg="move_panda" name="test task" type="test_static_task.py" output="screen"/>
+
+</launch>

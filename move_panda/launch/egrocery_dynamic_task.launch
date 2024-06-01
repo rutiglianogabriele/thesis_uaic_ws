@@ -1,0 +1,21 @@
+<launch>
+    <!-- This launch file will launch all the nodes needed to run the test task -->
+    <!-- Start detection with camera -->
+    <node pkg="object_detection" name="object_detection" type="object_tracking_dynamic_pub.py" output="screen"/>
+
+
+    <!-- Remap predictor subscriber -->
+	<remap from="/target_pose_measurement_stamped" to="/target_pose_meas_cov_stamped_panda_link0" /> 	
+	<!-- Launch predictor node -->
+	<node pkg="predictor" type="predictor3d" name="kalman_predictor_3d" output="screen"/>
+	<!-- Remap prediction handler subscriber -->
+	<remap from="/target_pose_meas_cov_stamped_panda_link0" to="/predicted_poses" /> 										 
+	<!-- Remap prediction handler publisher -->
+	<remap from="/target_pose_cov_stamped_panda_link0" to="/desktop/target_pose_cov_stmp_panda_link0" /> 	
+	<!-- Launch target selector node -->
+	<node pkg="predictor" type="prediction_handler_or_path_planner" name="target_position_selector" output="screen" /> 
+
+    <!-- Launch the arduino board -->
+    <node pkg="rosserial_python" name="serial_node" type="serial_node.py">
+    <param name="port" type="String" value="/dev/ttyACM0"/></node>
+</launch>

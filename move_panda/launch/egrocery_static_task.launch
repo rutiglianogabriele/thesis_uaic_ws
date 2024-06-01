@@ -1,0 +1,14 @@
+<launch>
+    <!-- This launch file will launch all the nodes needed to run the test task -->
+    
+    <!-- Launch the CAMERA -->
+    <node pkg="object_detection" name="object_detection" type="object_tracking_static_pub.py" output="screen"/>
+
+    <!-- Launch the arduino board -->
+    <node pkg="rosserial_python" name="serial_node" type="serial_node.py">
+    <param name="port" type="String" value="/dev/ttyACM0"/></node>
+
+    <!-- Launch the main mission -->
+    <node pkg="move_panda" name="static_egrocery_task" type="static_egrocery_task" output="screen"/>
+
+</launch>

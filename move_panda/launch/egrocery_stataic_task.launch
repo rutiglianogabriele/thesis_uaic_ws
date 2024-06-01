@@ -1,0 +1,13 @@
+<launch>
+    <!-- This launch file will launch all the nodes needed to run the test task -->
+    
+    <!-- Launch the timer -->
+    <node pkg="move_panda" name="timer" type="test_static_task.py" output="screen"/>
+
+    <!-- Launch the arduino board -->
+    <node pkg="rosserial_python" name="serial_node" type="serial_node.py">
+    <param name="port" type="String" value="/dev/ttyACM0"/></node>
+
+    <!-- Launch the main mission -->
+    <node pkg="move_panda" name="movePanda" type="movePanda" output="screen"/>
+</launch>
