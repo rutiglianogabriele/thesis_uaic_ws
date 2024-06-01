@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="robot_ip" default="172.16.0.3"/>
+  <arg name="trajectory_method" default="1" />
+  <arg name="load_gripper" default="false" />
+  <include file="$(find franka_control)/launch/franka_control.launch" >
+    <arg name="robot_ip" value="$(arg robot_ip)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+  </include>
+
+
+  <param name="/hiro_panda/trajectory_method" type="int" value="$(arg trajectory_method)" />
+  <rosparam file="$(find franka_aic)/config/franka_aic.yaml" command="load" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"  args="AIC_controller"/>
+
+</launch>
