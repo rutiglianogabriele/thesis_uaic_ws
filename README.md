@@ -1,11 +1,13 @@
 # E-Grocery task with a robotic arm controller by an Active Inference Controller (AIC)
 
+This repository contains all the ROS packages developed during the course of my Master Thesis in Automation and Robotics Engineering at Danmarks Tekniske Universitet (DTU).
+
 ## Table of contents
 * [General Info](#general-info)
 
 # General Info
 
-This repository contains multiple ROS packages.
+The available packages are:
 <ol>
   <li> <strong>move_panda:</strong> Developed during the course of my master thesis. This package contains all the launch files and scripts to run the various e-grocery tasks.</li>
   <li><strong>object_detection:</strong> Developed during the course of my master thesis. This package contains the scripts needed to launch the camera and perform object detection and tracking. Morevoer, with the file <em>test_static_task</em> </li>
