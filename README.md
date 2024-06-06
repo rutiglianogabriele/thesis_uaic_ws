@@ -17,8 +17,10 @@ The available packages are:
   <li><strong>predictor:</strong> This packaged has been developed by student Christian Kampp Kruuse during the course of his master thesis. This package contains the scripts and launch files needed to run the Kalman Filter required to perform the prediction of the object pose during the dynamic e-grocery task.</li>
 </ol>
 
+### To Keep in Mind
 The packages "move_panda", "object_detection" and "predictor" are project specific packages, this mean that they work well with the hardware set-up used during the course of this specific thesis project. For a different hardware set-up the code might need adaptation.
 
+### Results
 The results of the simuation of the e-grocery tasks can be seen at the following shared drive:
 https://drive.google.com/drive/folders/1bWAupsXqaDjYjVLPrEB_1UMEMhO6jONW?usp=drive_link
 
@@ -34,20 +36,23 @@ catkin build
 
 # How to Run It
 
-First align the camera and the robot. Run the object_tracking_dynamic.py and:
+First align the camera and the robot. Run the object_tracking_dynamic.py and place an object in the working area (table) of the robot. Two windows will pop-up, make sure to:
 <ol>
   <li>Align the blue strokes to the base frame of the robot (vertical blue line aligned with the front small triangle, horizonal line aligned with the lateral lights of the robot)</li>
   <li>Align the white horizontal line with the upper (from camera view, facing the robot base) side of the bolts.</li>
-  <li>Align the conveyor belt with the two lower white horizontal lines on the bottom</li>
+  <li>For task with the conveyor belt: align the conveyor belt with the two lower white horizontal lines on the bottom</li>
 </ol>
-
+Here is an example of how it should look:<br/> 
+<img src="https://github.com/rutiglianogabriele/thesis_uaic_ws/assets/139797348/199f2978-d04e-4442-9af8-5b51889d8d21" width="700">
+<br/>
+<br/>
 At this point, run the conveyor belt at the desired speed and run this in a terminal on the computer:
 
 ```
 cd Gabriele_thesis/panda_ws 
 ```
 
-Open 2  more terminals and do:
+Open two more terminals and do:
 ```
 source ./devel/setup.bash 
 ```
@@ -60,7 +65,7 @@ roslaunch franka_aic MRAC_controller.launch (for the MRAC controller)
 roslaunch franka_aic AIC_controller.launch (for the uAIC controller)
 ```
 
-In the last terminal you can launch the desired e-grocery task. Run either of the following:
+In the last terminal you can launch the desired e-grocery task. These launch file will take care of launching also the necessary nodes for the gripper and camera. Run either of the following:
 ```
 roslaunch move_panda egrocery_static_task.launch (for the static e-grocery task, without conveyor belt)
 roslaunch move_panda egrocery_dynamic_task.launch (for the dynamic e-grocery task, with conveyor belt)
